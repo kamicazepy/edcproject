@@ -1,0 +1,36 @@
+---
+title: "Policy Work"
+author: "Camila Maldonado"
+date: "Last updated on `r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    df_print: kable
+---
+
+<!--
+Comments in HTML are like this! 
+-->
+
+
+
+## Current Policies 
+
+* [Sen. Ruth Hardy: Child Care and ECE for Vermont - 2023](https://vtdigger.org/2023/02/09/sen-ruth-hardy-child-care-and-early-childhood-education-for-vermont/)
+
+* [Arkansas Lawmakers Consider Bill to Improve ECE - 2023](https://www.ktbs.com/news/texarkana/arkansas-lawmakers-consider-bill-to-improve-early-childhood-education/article_8ff7b91a-ad6c-11ed-852a-c32624ef966a.html)
+
+
+* [Sen. Markey & Sen. Warren Unveil New Child Care Legislation - 2023](https://www.markey.senate.gov/news/press-releases/senator-markey-joins-senator-warren-in-unveiling-new-child-care-legislation)
+
+
+* [HHS Launches First National ECE and Education Workforce Center - 2023](https://www.hhs.gov/about/news/2023/02/02/hhs-launches-first-national-early-care-and-education-workforce-center.html)
+
+* [Gov. J.B. Pritzker Renews Rre-K Expansion Push With 2024 budget Proposing $250 Million Increase - 2023](https://www.markey.senate.gov/news/press-releases/senator-markey-joins-senator-warren-in-unveiling-new-child-care-legislation)
+
+
+
+
+

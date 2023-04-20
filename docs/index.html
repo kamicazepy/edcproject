@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Camila Maldonado" />
+
+
+<title>The Data</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Elementary School Teachers Unequal Compensation</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">The Data</a>
+</li>
+<li>
+  <a href="overalldata.html">Why care?</a>
+</li>
+<li>
+  <a href="more_info.html">Educators Profiles</a>
+</li>
+<li>
+  <a href="policy.html">Policy Work</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="media.html">
+    <span class="fa fa-solid fa-newspaper"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="saudley@gmail.com">
+    <span class="fas fa-inbox"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">The Data</h1>
+<h4 class="author">Camila Maldonado</h4>
+<h4 class="date">Last updated on 2023-04-13</h4>
+
+</div>
+
+
+<!--
+Comments in HTML are like this! 
+-->
+<p><img src="intro.png" /></p>
+<div id="early-childhood-education-and-care" class="section level1">
+<h1>Early Childhood Education and Care</h1>
+<div id="a-public-good-with-comparable-compensation"
+class="section level2">
+<h2>A Public Good with Comparable Compensation</h2>
+<div id="current-system" class="section level3">
+<h3>Current System</h3>
+<p><em>“Educators are really subsidizing the system with their low
+wages…An expensive, scarce, underpaid child care system has been able to
+endure in part because of the long-term devaluing of care work,
+specifically as performed by women and especially women of color.”
+Center for the Study of Child Care Employment, Berkeley”</em></p>
+</div>
+</div>
+<div id="social-and-economic-issues" class="section level2">
+<h2>Social and Economic Issues</h2>
+</div>
+<div id="social-justice-and-equity" class="section level2">
+<h2>Social Justice and Equity</h2>
+<p><em>“If we want to address racial equity as a society, we have to
+address equitable compensation and support for the [early childhood]
+workforce.” John B. King, Former US Secretary of Education</em></p>
+<p>The profession of early childhood is 97% women and a majority of
+those are women of color; More women than men have left the workforce
+because of child care issues; Family Child Care programs are primarily
+women-owned businesses; Child care deserts are found in areas defined by
+race, income, and geography; “Areas with enough child care tend to
+be…higher educated communities, whether it’s in urban metros or suburban
+enclaves.” Washington Post, June 22, 2020. Extraordinary disparity with
+public school salaries Public School salary schedules do not
+differentiate between preschool teachers and high school teachers within
+the district.</p>
+<p><em>“The fact that public preschool teachers get paid twice as much
+as preschool teachers in community preschools is criminal.” Early Ed
+Compensation Survey respondent 2021</em></p>
+</div>
+<div id="economic-sustainability" class="section level2">
+<h2>Economic Sustainability</h2>
+<p>“…the consequences of inaction are clear: either we increase
+compensation for the early childhood workforce, or we will be left with
+no workforce at all.” NAEYC, Compensation Matters Most, June 2021</p>
+<p>Recruitment and retention of the workforce is a significant concern.
+The majority of the workforce is considering, or has left the field, due
+to compensation. Governor Baker in the Future of Work Report anticipates
+the state will need an additional 30,000 child care educators by 2030.
+Many programs are facing teacher shortages and therefore reduced
+enrollment capacity. Qualified educators leave community programs to
+teach in public schools because of compensation. The majority of survey
+respondents indicate they have considered leaving or have left early
+education positions due to compensation.</p>
+<p><em>“My income as a preschool teacher barely covered our bills. I was
+able to move into a public school system and feel far more able to care
+for my family.” Early Ed Compensation Survey respondent 2021</em></p>
+</div>
+<div id="child-development" class="section level2">
+<h2>Child Development</h2>
+<p><em>“…child development-particularly from birth to five years-is a
+foundation for a prosperous and sustainable society.” Center on the
+Developing Child at Harvard University</em></p>
+<p>Science and research support the value of high quality early
+education experiences. Quality correlates with compensation. Positive
+outcomes affect individuals, families, and communities.</p>
+<p><em>“Early Childhood compensation relates to the quality of the
+programming. It does not attract or retain the talent we need to create
+top programs.” Early Ed Compensation Survey respondent 2021</em></p>
+</div>
+<div id="barriers-to-equitable-compensation" class="section level2">
+<h2>Barriers to Equitable Compensation</h2>
+</div>
+</div>
+<div id="tuition-based-revenue-source" class="section level1">
+<h1>Tuition-based Revenue Source</h1>
+<p><em>“Being an educator for over 25 years has shown me that the tug of
+war between salaries and tuition has not changed and the underlying
+pressure and conflict between educators and parents continue to rise.”
+Early Ed Compensation Survey respondent 2021</em></p>
+<p>Massachusetts families spend 39% of their income on tuition. Future
+of Work Report 2021 Center-based programs allocate 70 - 100% of their
+budgets to compensation. The majority of funding for both center-based
+and family child care is private funding.</p>
+<p><em>“Right now 100% goes to payroll. We are slowly dwindling our
+accounts to pay for bills, supplies, and employee benefits…We have only
+survived because of the 2 PPP loans, a grant from EEC.” Personal email,
+July 12, 2021</em></p>
+<div id="market-comparisons" class="section level2">
+<h2>Market Comparisons</h2>
+<p>Perpetuate the bias and long standing discrimination against women
+and women of color. Do not reflect the true cost of child care “…many
+women continue to earn significantly lower than men for equal work…In
+many instances, the pay disparities can only be due to continued
+intentional discrimination or the lingering effects of past
+discrimination.” Rizo v. Yovino, 2019 California case on market
+comparisons. Solution: Definition of Comparable Work In 2018
+Massachusetts Act to Establish Pay Equity defined “comparable work” as
+broader and more inclusive than the Equal Pay act, and defines
+comparable work as “work that requires substantially similar skill,
+effort, and responsibility, and is performed under similar working
+conditions.” “Substantially similar means that each of the factors being
+considered ([skill, effort and responsibility]) are alike to a great or
+significant extent, but are not necessarily identical or alike in all
+respects. Minor differences in skill, effort, or responsibility will not
+prevent two jobs from being considered comparable.”</p>
+<p>The skill, effort, and responsibilities of early childhood educators
+are comparable to those of educators in the public school system who
+teach preschool through high school. Public School compensation systems
+do not differentiate between educators based on the age of the student
+they teach. The extraordinary difference in the compensation of
+community early childhood educators and public school educators is
+unjustifiable. If the early childhood workforce is 97% female, I propose
+that the disparity in compensation reflects a longstanding gender
+bias.</p>
+<p><em>“Let’s face it…there’s still serious disparities in pay based on
+race and gender.” Angela Cornell, director of the Labor Law Clinic,
+Cornell Law School</em></p>
+</div>
+<div id="the-workforce" class="section level2">
+<h2>The Workforce</h2>
+<p>The early childhood educators in Massachusetts holding positions with
+the title of “lead teacher” in center-based programs are experienced and
+educated; 76.2% of these lead teachers hold at least a bachelor’s degree
+and qualify for comparable compensation per Massachusetts own
+definition. They are also highly experienced, as seen in the chart
+below.</p>
+<p>How Far Are We From Comparable Compensation? Current Public School
+and Early Childhood Compensation Public School compensation and benefits
+vary among districts, however they all include increases in compensation
+based on education and experience.</p>
+<p>In contrast, compensation of early educators varies very little
+across the state, 40% report they do not receive an annual increase, and
+60% report they do not receive an increase based on additional
+education. In fact, the compensation for lead, center-based teachers
+holding a bachelor’s degree is similar to those with a high school
+diploma.</p>
+</div>
+<div id="public-funding-for-comparable-compensation"
+class="section level2">
+<h2>Public Funding for Comparable Compensation</h2>
+<p><em>“So it comes down to this: Any child care plan that does not
+start with hugely, massively, tremendously increasing child care teacher
+wages and benefits is not a credible plan….Child care shouldn’t be a
+low-wage industry to begin with, given the indelible impacts on child
+development, family stability, and the overall economy…The fact is there
+is no high-quality child care system without a sustainable workforce. So
+as policymakers turn their attention from salvaging the existing child
+care system to building one that works, the first-order question must
+be: How do we get enough public money flowing annually into the sector
+to allow wages to rapidly rise?” Eliott Haspel, March 16, 2021</em></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

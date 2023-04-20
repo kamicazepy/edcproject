@@ -1,0 +1,57 @@
+---
+title: "Educator Profiles"
+author: "Camila Maldonado"
+output: pdf_document
+date: "2023-04-15"
+---
+
+## Norfolk County 
+
+![](educator_profiles/norfolk.png)
+
+
+## Hampshire County 
+
+![](educator_profiles/hampshire.png)
+
+
+## Barnstable County 
+
+![](educator_profiles/barnstable.png) 
+
+
+## Berkshire County 
+
+![](educator_profiles/berkshire.png)
+
+
+## Bristol County 
+![](educator_profiles/bristol.png)
+
+
+## Essex County 
+![](educator_profiles/essex.png)
+
+
+## Franklin County 
+
+![](educator_profiles/franklin.png)
+
+
+## Hampden County 
+
+![](educator_profiles/hampden.png)
+
+
+## Middlesex County 
+
+![](educator_profiles/middlesex.png)
+
+
+## Suffolk County 
+
+![](educator_profiles/suffolk.png)
+
+## Worcester County 
+
+![](educator_profiles/worcester.png)

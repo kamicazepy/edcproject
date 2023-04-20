@@ -1,0 +1,33 @@
+name: "Elementary School Teachers Unequal Compensation"
+output_dir: docs
+# The website theme "cosmo" was chosen from
+# https://bootswatch.com/3/
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    toc_depth: 2
+    theme: cosmo
+    highlight: tango
+    df_print: paged
+    lib_dir: site_libs
+    self_contained: no
+    code_folding: hide
+# All fa icons were obtained from https://fontawesome.com/icons?d=gallery
+navbar:
+  title: "Elementary School Teachers Unequal Compensation"
+  left:
+    - text: "The Data"
+      href: index.html
+    - text: "Why care?"
+      href: overalldata.html
+    - text: "Educators Profiles"
+      href: more_info.html
+    - text: "Policy Work"
+      href: policy.html
+  right:
+   - icon: fa-solid fa-newspaper
+     href: media.html
+   - icon: fas fa-inbox
+     href: saudley@gmail.com
+    
