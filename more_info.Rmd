@@ -1,6 +1,6 @@
 ---
 title: "Educator Profiles"
-author: "Camila Maldonado"
+author: "Camila Maldonado Franco"
 date: "Last updated on `r Sys.Date()`"
 output:
   pdf_document:
